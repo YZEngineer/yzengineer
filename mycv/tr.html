@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Jafar Asi | Bilgisayar Mühendisi</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Fira+Code:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0a0e13;
+    --bg2: #0f1419;
+    --bg3: #161c24;
+    --border: #1e2d3d;
+    --green: #00d68f;
+    --cyan: #00b4d8;
+    --orange: #ff9f43;
+    --red: #ff6b6b;
+    --yellow: #ffd93d;
+    --purple: #a29bfe;
+    --text: #cdd6f4;
+    --muted: #6c7a89;
+    --dim: #3d4a56;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  .cursor {
+    position: fixed;
+    width: 12px; height: 12px;
+    background: var(--green);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s;
+    mix-blend-mode: screen;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 32px; height: 32px;
+    border: 1px solid var(--cyan);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: all 0.15s ease;
+    mix-blend-mode: screen;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.04) 2px,
+      rgba(0,0,0,0.04) 4px
+    );
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--green); }
+
+  /* ========= HEADER / TERMINAL HERO ========= */
+  header {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.4;
+  }
+
+  .grid-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(0,214,143,0.06) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(0,180,216,0.05) 0%, transparent 50%);
+  }
+
+  .terminal-window {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .terminal-bar {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .dot { width:12px; height:12px; border-radius:50%; }
+  .dot.r { background:#ff5f57; }
+  .dot.y { background:#febc2e; }
+  .dot.g { background:#28c840; }
+
+  .terminal-title {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+
+  .terminal-body {
+    background: rgba(10,14,19,0.95);
+    border: 1px solid var(--border);
+    border-radius: 0 0 8px 8px;
+    padding: 2rem;
+    backdrop-filter: blur(8px);
+  }
+
+  .prompt-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .prompt { color: var(--green); white-space: nowrap; }
+  .cmd { color: var(--cyan); }
+  .arg { color: var(--orange); }
+  .comment { color: var(--muted); }
+
+  .output-block {
+    padding: 1.2rem 0 1.2rem 1.5rem;
+    border-left: 2px solid var(--border);
+    margin-bottom: 1rem;
+  }
+
+  h1.name {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    letter-spacing: -1px;
+  }
+
+  h1.name span { color: var(--green); }
+
+  .title-line {
+    font-size: 0.9rem;
+    color: var(--cyan);
+    margin-top: 0.6rem;
+    letter-spacing: 2px;
+  }
+
+  .title-line span { color: var(--orange); }
+
+  .typing-text {
+    font-size: 0.8rem;
+    color: var(--text);
+    margin-top: 1rem;
+    line-height: 1.8;
+  }
+
+  .blink {
+    display: inline-block;
+    width: 8px; height: 1em;
+    background: var(--green);
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink { 50% { opacity:0; } }
+
+  /* ========= NAV ========= */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,14,19,0.95);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    font-size: 0.8rem;
+  }
+
+  .nav-logo { color: var(--green); font-weight: 700; }
+  .nav-logo span { color: var(--muted); }
+
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--green); }
+  nav a::before { content: './'; color: var(--dim); }
+
+  .nav-spacer { flex: 1; min-width: 0; }
+
+  /* ========= DROPDOWN ========= */
+  .lang-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 1rem;
+  }
+
+  .lang-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--green);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .lang-btn:hover { border-color: var(--green); }
+
+  .lang-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    min-width: 130px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+    z-index: 200;
+    margin-top: 4px;
+  }
+
+  .lang-dropdown:hover .lang-menu {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .lang-menu a {
+    display: block;
+    padding: 8px 12px;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .lang-menu a:last-child { border-bottom: none; }
+
+  .lang-menu a:hover {
+    color: var(--green);
+    background: var(--bg3);
+  }
+
+  .lang-menu a.active { color: var(--green); }
+
+  .nav-right { margin-left: auto; color: var(--dim); font-size: 0.7rem; }
+
+  /* ========= SECTIONS ========= */
+  section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .section-num { color: var(--orange); font-size: 0.8rem; }
+  .section-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ========= SKILLS ========= */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .skill-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.2rem;
+    transition: border-color 0.3s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 60%, rgba(0,214,143,0.04));
+  }
+
+  .skill-card:hover {
+    border-color: var(--green);
+    transform: translateY(-2px);
+  }
+
+  .skill-cat {
+    font-size: 0.65rem;
+    color: var(--orange);
+    letter-spacing: 2px;
+    margin-bottom: 0.6rem;
+  }
+
+  .skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 3px 8px;
+    font-size: 0.72rem;
+    color: var(--cyan);
+    font-family: 'Fira Code', monospace;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .tag:hover {
+    border-color: var(--cyan);
+    color: #fff;
+  }
+
+  /* ========= PROJECTS ========= */
+  .projects-grid {
+    display: grid;
+    gap: 1.2rem;
+  }
+
+  .project-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.2rem;
+    align-items: start;
+    transition: border-color 0.3s;
+    cursor: default;
+  }
+
+  .project-card:hover { border-color: var(--cyan); }
+
+  .project-icon {
+    font-size: 1.6rem;
+    width: 48px;
+    height: 48px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .project-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.3rem;
+  }
+
+  .project-desc {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 0.8rem;
+    font-family: 'Fira Code', monospace;
+  }
+
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .project-link {
+    color: var(--green);
+    text-decoration: none;
+    font-size: 0.72rem;
+    white-space: nowrap;
+    padding: 4px 10px;
+    border: 1px solid var(--green);
+    border-radius: 3px;
+    transition: background 0.2s;
+  }
+
+  .project-link:hover {
+    background: rgba(0,214,143,0.1);
+  }
+
+  /* ========= GITHUB ACCOUNTS ========= */
+  .accounts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.8rem;
+  }
+
+  .account-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    text-decoration: none;
+    transition: border-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .account-card:hover {
+    border-color: var(--purple);
+    transform: translateY(-2px);
+  }
+
+  .gh-icon {
+    color: var(--purple);
+    font-size: 1.2rem;
+  }
+
+  .account-name {
+    font-size: 0.78rem;
+    color: var(--text);
+  }
+
+  .account-name small {
+    display: block;
+    color: var(--muted);
+    font-size: 0.65rem;
+    margin-top: 2px;
+  }
+
+  /* ========= CONTACT ========= */
+  .contact-block {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2rem;
+    font-family: 'Fira Code', monospace;
+  }
+
+  .contact-line {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.82rem;
+  }
+
+  .contact-line:last-child { border-bottom: none; }
+
+  .contact-key { color: var(--purple); width: 100px; flex-shrink: 0; }
+  .contact-val { color: var(--green); }
+  .contact-val a { color: var(--green); text-decoration: none; }
+  .contact-val a:hover { text-decoration: underline; }
+
+  /* ========= FOOTER ========= */
+  footer {
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.72rem;
+    color: var(--dim);
+  }
+
+  footer span { color: var(--green); }
+
+  /* ========= ANIMATIONS ========= */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Status badge */
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0,214,143,0.08);
+    border: 1px solid rgba(0,214,143,0.3);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.72rem;
+    color: var(--green);
+    margin-top: 1.2rem;
+  }
+
+  .status-dot {
+    width: 7px; height: 7px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0,214,143,0.4); }
+    50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(0,214,143,0); }
+  }
+
+  /* ========= FLOATING BUTTONS ========= */
+  .float-btns {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 999;
+  }
+
+  .float-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.4rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  .float-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+  }
+
+  .float-btn.whatsapp { background: #25D366; color: #fff; }
+  .float-btn.email { background: var(--cyan); color: #fff; }
+
+  @media (max-width: 600px) {
+    .float-btns { bottom: 1rem; right: 1rem; }
+    .float-btn { width: 42px; height: 42px; font-size: 1.2rem; }
+  }
+
+  @media (max-width: 600px) {
+    .project-card { grid-template-columns: 1fr; }
+    .project-link { width: fit-content; }
+    nav > a { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <div class="nav-logo">jafar<span>@portfolio</span></div>
+  <a href="#about">hakkımda</a>
+  <a href="#skills">yetenekler</a>
+  <a href="#projects">projeler</a>
+  <a href="#contact">iletişim</a>
+  <span class="nav-spacer"></span>
+  <div class="nav-right">v1.0.0</div>
+  <div class="lang-dropdown">
+    <button class="lang-btn">TR ▾</button>
+    <div class="lang-menu">
+      <a href="en.html">English</a>
+      <a href="tr.html" class="active">Türkçe</a>
+      <a href="ar.html">العربية</a>
+    </div>
+  </div>
+</nav>
+
+<header id="about">
+  <div class="grid-bg"></div>
+  <div class="terminal-window">
+    <div class="terminal-bar">
+      <div class="dot r"></div>
+      <div class="dot y"></div>
+      <div class="dot g"></div>
+      <div class="terminal-title">bash — jafar@portfolio ~ — 80×24</div>
+    </div>
+    <div class="terminal-body">
+
+      <div class="prompt-line">
+        <span class="prompt">~/portfolio $</span>
+        <span class="cmd">cat</span>
+        <span class="arg">whoami.txt</span>
+      </div>
+
+      <div class="output-block">
+        <h1 class="name">Jafar <span>Asi</span></h1>
+        <div class="title-line">
+          Bilgisayar Mühendisi &nbsp;|&nbsp;
+          <span>Ar-Ge · YZ · Full Stack · Android</span>
+        </div>
+        <div class="typing-text">
+          YZ/ML, Bilgisayarlı Görü, Sinyal &amp; Görüntü İşleme,<br/>
+          ROS Robotik, Full Stack Web, Flutter Mobil ve Gömülü Sistemler.<br/>
+          <span style="color:var(--orange)">Bursa, Türkiye</span> · Uludağ Üniversitesi.
+        </div>
+        <div class="status-badge">
+          <span class="status-dot"></span>
+          Fırsatlar için müsait
+        </div>
+      </div>
+
+      <div class="prompt-line" style="margin-top:1rem;">
+        <span class="prompt">~/portfolio $</span>
+        <span class="cmd">ls</span>
+        <span class="arg">--yetenekler --projeler --iletisim</span>
+        <span class="comment">&nbsp;# aşağı kaydır ↓</span>
+      </div>
+      <div style="margin-top:4px; font-size:0.78rem; color:var(--muted);">
+        yetenekler/ &nbsp;&nbsp; projeler/ &nbsp;&nbsp; github/ &nbsp;&nbsp; iletisim/ <span class="blink"></span>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<section id="skills">
+  <div class="section-header fade-in">
+    <span class="section-num">01.</span>
+    <h2 class="section-title">yetenekler &amp; araçlar</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="skills-grid">
+
+    <div class="skill-card fade-in">
+      <div class="skill-cat">YAPAY ZEKA / MAKİNE ÖĞRENMESİ</div>
+      <div class="skill-list">
+        <span class="tag">Python</span>
+        <span class="tag">TensorFlow</span>
+        <span class="tag">scikit-learn</span>
+        <span class="tag">YOLO</span>
+        <span class="tag">Decision Trees</span>
+        <span class="tag">PCA</span>
+        <span class="tag">Regression</span>
+        <span class="tag">Clustering</span>
+      </div>
+    </div>
+
+    <div class="skill-card fade-in">
+      <div class="skill-cat">GÖRÜNTÜ / SİNYAL İŞLEME</div>
+      <div class="skill-list">
+        <span class="tag">OpenCV</span>
+        <span class="tag">rPPG</span>
+        <span class="tag">FFT</span>
+        <span class="tag">Filtering</span>
+        <span class="tag">Feature Extraction</span>
+        <span class="tag">NumPy</span>
+        <span class="tag">SciPy</span>
+        <span class="tag">Matplotlib</span>
+      </div>
+    </div>
+
+    <div class="skill-card fade-in">
+      <div class="skill-cat">ROBOTİK / GÖMÜLÜ</div>
+      <div class="skill-list">
+        <span class="tag">ROS</span>
+        <span class="tag">C++</span>
+        <span class="tag">C</span>
+        <span class="tag">ESP32</span>
+        <span class="tag">Arduino</span>
+        <span class="tag">MicroPython</span>
+        <span class="tag">Autonomous Vehicles</span>
+        <span class="tag">UAV / Drones</span>
+      </div>
+    </div>
+
+    <div class="skill-card fade-in">
+      <div class="skill-cat">MOBİL / ÇAPRAZ PLATFORM</div>
+      <div class="skill-list">
+        <span class="tag">Flutter</span>
+        <span class="tag">Dart</span>
+        <span class="tag">Android</span>
+        <span class="tag">State Management</span>
+        <span class="tag">REST APIs</span>
+      </div>
+    </div>
+
+    <div class="skill-card fade-in">
+      <div class="skill-cat">WEB GELİŞTİRME</div>
+      <div class="skill-list">
+        <span class="tag">HTML5</span>
+        <span class="tag">CSS3</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Bootstrap</span>
+        <span class="tag">Responsive Design</span>
+        <span class="tag">GitHub Pages</span>
+      </div>
+    </div>
+
+    <div class="skill-card fade-in">
+      <div class="skill-cat">DİLLER / DİĞER</div>
+      <div class="skill-list">
+        <span class="tag">C#</span>
+        <span class="tag">.NET</span>
+        <span class="tag">Jupyter Notebook</span>
+        <span class="tag">Git</span>
+        <span class="tag">Linux</span>
+        <span class="tag">Wokwi</span>
+        <span class="tag">Tinkercad</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-header fade-in">
+    <span class="section-num">02.</span>
+    <h2 class="section-title">projeler</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="projects-grid">
+
+    <div class="project-card fade-in">
+      <div class="project-icon">🚗</div>
+      <div>
+        <div class="project-name">Otonom Araç &amp; İHA Sistemi</div>
+        <div class="project-desc">
+          // Takım projesi · Sürücüsüz araç + otonom drone<br/>
+          // Navigasyon, engelden kaçınma, gerçek zamanlı sensör füzyonu<br/>
+          // ROS tabanlı mimari, özel düğümler
+        </div>
+        <div class="project-tags">
+          <span class="tag">ROS</span>
+          <span class="tag">C++</span>
+          <span class="tag">Python</span>
+          <span class="tag">Computer Vision</span>
+          <span class="tag">UAV</span>
+          <span class="tag">Lidar/Camera</span>
+        </div>
+      </div>
+      <div></div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-icon">💓</div>
+      <div>
+        <div class="project-name">rPPG — Uzaktan Nabız Ölçümü</div>
+        <div class="project-desc">
+          // Sadece kamera ile videodan kalp atışı tahmini<br/>
+          // Yüz bölgesi çıkarma + sinyal filtreleme (BPF, FFT)<br/>
+          // Temassız — tamamen görüntü/sinyal işleme
+        </div>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">OpenCV</span>
+          <span class="tag">Signal Processing</span>
+          <span class="tag">FFT</span>
+          <span class="tag">Image Processing</span>
+        </div>
+      </div>
+      <a class="project-link" href="https://github.com/myarchive2/rppg-url" target="_blank">→ repo</a>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-icon">🤖</div>
+      <div>
+        <div class="project-name">AI Python — ML Notebooklar</div>
+        <div class="project-desc">
+          // Sıfırdan ML algoritmaları koleksiyonu<br/>
+          // Decision Trees, PCA, Regresyon, Öneri Sistemleri<br/>
+          // TensorFlow · Cat-Dog-Panda görüntü sınıflandırıcı · YOLO tespiti
+        </div>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">TensorFlow</span>
+          <span class="tag">YOLO</span>
+          <span class="tag">Jupyter</span>
+          <span class="tag">scikit-learn</span>
+        </div>
+      </div>
+      <a class="project-link" href="https://github.com/MuslimEngineer/aiPiton" target="_blank">→ repo</a>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-icon">📱</div>
+      <div>
+        <div class="project-name">Flutter Android Uygulamaları</div>
+        <div class="project-desc">
+          // Flutter/Dart ile çapraz platform mobil uygulamalar<br/>
+          // Otomasyon uygulaması · Temiz arayüz · State management<br/>
+          // Yayınlanmış ve birden çok repoda bakımı yapılıyor
+        </div>
+        <div class="project-tags">
+          <span class="tag">Flutter</span>
+          <span class="tag">Dart</span>
+          <span class="tag">Android</span>
+          <span class="tag">UI/UX</span>
+        </div>
+      </div>
+      <a class="project-link" href="https://github.com/MuslimEngineer/MuslimEngineer" target="_blank">→ repo</a>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-icon">🔌</div>
+      <div>
+        <div class="project-name">ESP32 IoT — WiFi LED Kontrolü</div>
+        <div class="project-desc">
+          // WiFi bağlantılı ESP32 projeleri (MicroPython)<br/>
+          // Uzaktan LED kontrolü, sensör okuma, devre simülasyonu<br/>
+          // Eğitim materyalleri + Wokwi simülasyonları
+        </div>
+        <div class="project-tags">
+          <span class="tag">ESP32</span>
+          <span class="tag">MicroPython</span>
+          <span class="tag">Arduino</span>
+          <span class="tag">WiFi</span>
+          <span class="tag">IoT</span>
+        </div>
+      </div>
+      <a class="project-link" href="https://github.com/myarchive2/101-esp32" target="_blank">→ repo</a>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-icon">🌐</div>
+      <div>
+        <div class="project-name">Web Projeleri</div>
+        <div class="project-desc">
+          // HTML/CSS/JS + Bootstrap ile responsive web sayfaları<br/>
+          // GitHub Pages ile yayınlama<br/>
+          // C# .NET masaüstü uygulamaları
+        </div>
+        <div class="project-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Bootstrap</span>
+          <span class="tag">C#</span>
+        </div>
+      </div>
+      <a class="project-link" href="https://github.com/myarchive2/101-web" target="_blank">→ repo</a>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="section-header fade-in">
+    <span class="section-num">03.</span>
+    <h2 class="section-title">github hesapları</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="accounts-grid fade-in">
+    <a class="account-card" href="https://github.com/myarchive2" target="_blank">
+      <div class="gh-icon">⌥</div>
+      <div class="account-name">myarchive2 <small>ana arşiv</small></div>
+    </a>
+    <a class="account-card" href="https://github.com/MuslimEngineer" target="_blank">
+      <div class="gh-icon">⌥</div>
+      <div class="account-name">MuslimEngineer <small>YZ · ML · C#</small></div>
+    </a>
+    <a class="account-card" href="https://github.com/CaferAsi" target="_blank">
+      <div class="gh-icon">⌥</div>
+      <div class="account-name">CaferAsi <small>kişisel</small></div>
+    </a>
+    <a class="account-card" href="https://github.com/YZEngineer" target="_blank">
+      <div class="gh-icon">⌥</div>
+      <div class="account-name">YZEngineer <small>web · otomasyon</small></div>
+    </a>
+    <a class="account-card" href="https://github.com/E-BU-LUT" target="_blank">
+      <div class="gh-icon">⌥</div>
+      <div class="account-name">E-BU-LUT  </div>
+    </a>
+  </div>
+</section>
+
+<section>
+  <div class="section-header fade-in">
+    <span class="section-num">04.</span>
+    <h2 class="section-title">diller</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="skills-grid fade-in" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
+
+    <div class="skill-card" style="text-align:center; padding: 1.8rem 1rem;">
+      <div style="font-size:2rem; margin-bottom:0.6rem;">🇹🇷</div>
+      <div style="font-size:1rem; font-weight:600; color:#fff; margin-bottom:4px;">Türkçe</div>
+      <div style="font-size:0.72rem; color:var(--green);">Anadil</div>
+    </div>
+
+    <div class="skill-card" style="text-align:center; padding: 1.8rem 1rem;">
+      <div style="font-size:2rem; margin-bottom:0.6rem;">🇸🇦</div>
+      <div style="font-size:1rem; font-weight:600; color:#fff; margin-bottom:4px;">العربية</div>
+      <div style="font-size:0.72rem; color:var(--green);">Anadil</div>
+    </div>
+
+    <div class="skill-card" style="text-align:center; padding: 1.8rem 1rem;">
+      <div style="font-size:2rem; margin-bottom:0.6rem;">🇬🇧</div>
+      <div style="font-size:1rem; font-weight:600; color:#fff; margin-bottom:4px;">English</div>
+      <div style="font-size:0.72rem; color:var(--orange);">Başlangıç</div>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-header fade-in">
+    <span class="section-num">05.</span>
+    <h2 class="section-title">iletişim</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="contact-block fade-in">
+    <div class="contact-line">
+      <span class="contact-key">isim</span>
+      <span class="contact-val">"Jafar Asi"</span>
+    </div>
+    <div class="contact-line">
+      <span class="contact-key">rol</span>
+      <span class="contact-val">"Bilgisayar Mühendisi · Ar-Ge / YZ / Full Stack"</span>
+    </div>
+    <div class="contact-line">
+      <span class="contact-key">e-posta</span>
+      <span class="contact-val">
+        <a href="mailto:engineerjafarasi@gmail.com">engineerjafarasi@gmail.com</a>
+      </span>
+    </div>
+    <div class="contact-line">
+      <span class="contact-key">telefon</span>
+      <span class="contact-val">
+        <a href="tel:+905378142730">+90 537 814 27 30</a>
+      </span>
+    </div>
+    <div class="contact-line">
+      <span class="contact-key">github</span>
+      <span class="contact-val">
+        <a href="https://github.com/myarchive2" target="_blank">github.com/myarchive2</a>
+      </span>
+    </div>
+    <div class="contact-line">
+      <span class="contact-key">konum</span>
+      <span class="contact-val">"Bursa, Türkiye"</span>
+    </div>
+    <div class="contact-line">
+      <span class="contact-key">üniversite</span>
+      <span class="contact-val">"Bursa Uludağ Üniversitesi"</span>
+    </div>
+    <div class="contact-line">
+      <span class="contact-key">durum</span>
+      <span class="contact-val" style="color:var(--green);">"fırsatlara_açık": true</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>jafar asi</span> · engineerjafarasi@gmail.com · built with HTML/CSS/JS &nbsp;·&nbsp; 2026
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx - 6 + 'px';
+    cursor.style.top = my - 6 + 'px';
+  });
+
+  function animRing() {
+    rx += (mx - rx) * 0.15;
+    ry += (my - ry) * 0.15;
+    ring.style.left = rx - 16 + 'px';
+    ring.style.top = ry - 16 + 'px';
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+
+<div class="float-btns">
+  <a class="float-btn whatsapp" href="https://wa.me/905378142730" target="_blank" title="WhatsApp">💬</a>
+  <a class="float-btn email" href="mailto:engineerjafarasi@gmail.com" title="Email">✉</a>
+</div>
+
+</body>
+</html>

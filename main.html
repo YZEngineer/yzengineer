@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المشاريع</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Naskh Arabic', 'Amiri', serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .container { max-width: 800px; width: 100%; padding: 40px 20px; }
+  header { text-align: center; margin-bottom: 40px; }
+  header .bismillah {
+    font-family: 'Amiri', serif;
+    font-size: 1.3em;
+    color: #d4af37;
+    margin-bottom: 12px;
+  }
+  header h1 {
+    font-family: 'Amiri', serif;
+    font-size: 2.5em;
+    color: #f0c27f;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 10px rgba(240,194,127,0.3);
+  }
+  header p { color: #b8b8d4; font-size: 1em; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 28px 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+  }
+  .card:hover {
+    background: rgba(240,194,127,0.12);
+    border-color: rgba(240,194,127,0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+  }
+  .card .icon { font-size: 2em; margin-bottom: 12px; }
+  .card .title {
+    font-family: 'Amiri', serif;
+    font-size: 1.5em;
+    color: #f0c27f;
+    margin-bottom: 8px;
+  }
+  .card .desc { color: #b8b8d4; font-size: 0.95em; line-height: 1.8; }
+
+  .card.disabled {
+    opacity: 0.4;
+    cursor: default;
+    pointer-events: none;
+  }
+  .card.disabled:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.1);
+    transform: none;
+    box-shadow: none;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 50px;
+    color: #555;
+    font-size: 0.85em;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="bismillah">بسم الله الرحمن الرحيم</div>
+    <h1>المشاريع</h1>
+  </header>
+
+  <div class="grid">
+    <a href="word-meanings/index.html" class="card">
+      <div class="icon">📖</div>
+      <div class="title">معاني الكلمات</div>
+      <div class="desc">شرح الكلمات الغريبة في القرآن الكريم<br>مصدر: الدرر السنية - dorar.net</div>
+    </a>
+
+    <a href="mycv/index.html" class="card">
+      <div class="icon">📄</div>
+      <div class="title">السيرة الذاتية</div>
+      <div class="desc">Curriculum Vitae - ثلاث لغات<br>العربية · English · Türkçe</div>
+    </a>
+
+    <div class="card disabled">
+      <div class="icon">🚧</div>
+      <div class="title">قريباً...</div>
+      <div class="desc">مشاريع جديدة قادمة إن شاء الله</div>
+    </div>
+  </div>
+
+  <footer>بسم الله الرحمن الرحيم</footer>
+</div>
+</body>
+</html>

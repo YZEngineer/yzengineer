@@ -1,0 +1,467 @@
+﻿[
+    {
+        "f":  "sure_01_fatiha.html",
+        "ar":  "الفاتحة",
+        "n":  1
+    },
+    {
+        "f":  "sure_02_bakara.html",
+        "ar":  "البقرة",
+        "n":  2
+    },
+    {
+        "f":  "sure_03_ali-imran.html",
+        "ar":  "آل عمران",
+        "n":  3
+    },
+    {
+        "f":  "sure_04_nisa.html",
+        "ar":  "النساء",
+        "n":  4
+    },
+    {
+        "f":  "sure_05_maidah.html",
+        "ar":  "المائدة",
+        "n":  5
+    },
+    {
+        "f":  "sure_06_anam.html",
+        "ar":  "الأنعام",
+        "n":  6
+    },
+    {
+        "f":  "sure_07_araf.html",
+        "ar":  "الأعراف",
+        "n":  7
+    },
+    {
+        "f":  "sure_08_anfal.html",
+        "ar":  "الأنفال",
+        "n":  8
+    },
+    {
+        "f":  "sure_09_tawba.html",
+        "ar":  "التوبة",
+        "n":  9
+    },
+    {
+        "f":  "sure_10_yunus.html",
+        "ar":  "يونس",
+        "n":  10
+    },
+    {
+        "f":  "sure_11_hud.html",
+        "ar":  "هود",
+        "n":  11
+    },
+    {
+        "f":  "sure_12_yusuf.html",
+        "ar":  "يوسف",
+        "n":  12
+    },
+    {
+        "f":  "sure_13_rad.html",
+        "ar":  "الرعد",
+        "n":  13
+    },
+    {
+        "f":  "sure_14_ibrahim.html",
+        "ar":  "إبراهيم",
+        "n":  14
+    },
+    {
+        "f":  "sure_15_hijr.html",
+        "ar":  "الحجر",
+        "n":  15
+    },
+    {
+        "f":  "sure_16_nahl.html",
+        "ar":  "النحل",
+        "n":  16
+    },
+    {
+        "f":  "sure_17_isra.html",
+        "ar":  "الإسراء",
+        "n":  17
+    },
+    {
+        "f":  "sure_18_kahf.html",
+        "ar":  "الكهف",
+        "n":  18
+    },
+    {
+        "f":  "sure_19_maryam.html",
+        "ar":  "مريم",
+        "n":  19
+    },
+    {
+        "f":  "sure_20_taha.html",
+        "ar":  "طه",
+        "n":  20
+    },
+    {
+        "f":  "sure_21_anbiya.html",
+        "ar":  "الأنبياء",
+        "n":  21
+    },
+    {
+        "f":  "sure_22_hajj.html",
+        "ar":  "الحج",
+        "n":  22
+    },
+    {
+        "f":  "sure_23_muminun.html",
+        "ar":  "المؤمنون",
+        "n":  23
+    },
+    {
+        "f":  "sure_24_nur.html",
+        "ar":  "النور",
+        "n":  24
+    },
+    {
+        "f":  "sure_25_furqan.html",
+        "ar":  "الفرقان",
+        "n":  25
+    },
+    {
+        "f":  "sure_35_fatir.html",
+        "ar":  "فاطر",
+        "n":  35
+    },
+    {
+        "f":  "sure_38_sad.html",
+        "ar":  "ص",
+        "n":  38
+    },
+    {
+        "f":  "sure_39_zumar.html",
+        "ar":  "الزمر",
+        "n":  39
+    },
+    {
+        "f":  "sure_40_ghafir.html",
+        "ar":  "غافر",
+        "n":  40
+    },
+    {
+        "f":  "sure_41_fussilat.html",
+        "ar":  "فصلت",
+        "n":  41
+    },
+    {
+        "f":  "sure_42_shura.html",
+        "ar":  "الشورى",
+        "n":  42
+    },
+    {
+        "f":  "sure_43_zukhruf.html",
+        "ar":  "الزخرف",
+        "n":  43
+    },
+    {
+        "f":  "sure_46_ahqaf.html",
+        "ar":  "الأحقاف",
+        "n":  46
+    },
+    {
+        "f":  "sure_47_muhammad.html",
+        "ar":  "محمد",
+        "n":  47
+    },
+    {
+        "f":  "sure_49_hujurat.html",
+        "ar":  "الحجرات",
+        "n":  49
+    },
+    {
+        "f":  "sure_50_qaf.html",
+        "ar":  "ق",
+        "n":  50
+    },
+    {
+        "f":  "sure_51_dhariyat.html",
+        "ar":  "الذاريات",
+        "n":  51
+    },
+    {
+        "f":  "sure_52_tur.html",
+        "ar":  "الطور",
+        "n":  52
+    },
+    {
+        "f":  "sure_53_najm.html",
+        "ar":  "النجم",
+        "n":  53
+    },
+    {
+        "f":  "sure_54_qamar.html",
+        "ar":  "القمر",
+        "n":  54
+    },
+    {
+        "f":  "sure_55_rahman.html",
+        "ar":  "الرحمن",
+        "n":  55
+    },
+    {
+        "f":  "sure_57_hadid.html",
+        "ar":  "الحديد",
+        "n":  57
+    },
+    {
+        "f":  "sure_59_hashr.html",
+        "ar":  "الحشر",
+        "n":  59
+    },
+    {
+        "f":  "sure_60_mumtahina.html",
+        "ar":  "الممتحنة",
+        "n":  60
+    },
+    {
+        "f":  "sure_61_saff.html",
+        "ar":  "الصف",
+        "n":  61
+    },
+    {
+        "f":  "sure_62_jumua.html",
+        "ar":  "الجمعة",
+        "n":  62
+    },
+    {
+        "f":  "sure_63_munafiqun.html",
+        "ar":  "المنافقون",
+        "n":  63
+    },
+    {
+        "f":  "sure_64_taghabun.html",
+        "ar":  "التغابن",
+        "n":  64
+    },
+    {
+        "f":  "sure_65_talaq.html",
+        "ar":  "الطلاق",
+        "n":  65
+    },
+    {
+        "f":  "sure_66_tahrim.html",
+        "ar":  "التحريم",
+        "n":  66
+    },
+    {
+        "f":  "sure_67_mulk.html",
+        "ar":  "الملك",
+        "n":  67
+    },
+    {
+        "f":  "sure_68_qalam.html",
+        "ar":  "القلم",
+        "n":  68
+    },
+    {
+        "f":  "sure_70_maarij.html",
+        "ar":  "المعارج",
+        "n":  70
+    },
+    {
+        "f":  "sure_71_nuh.html",
+        "ar":  "نوح",
+        "n":  71
+    },
+    {
+        "f":  "sure_72_jinn.html",
+        "ar":  "الجن",
+        "n":  72
+    },
+    {
+        "f":  "sure_73_muzzammil.html",
+        "ar":  "المزمل",
+        "n":  73
+    },
+    {
+        "f":  "sure_75_qiyama.html",
+        "ar":  "القيامة",
+        "n":  75
+    },
+    {
+        "f":  "sure_76_insan.html",
+        "ar":  "الإنسان",
+        "n":  76
+    },
+    {
+        "f":  "sure_77_mursalat.html",
+        "ar":  "المرسلات",
+        "n":  77
+    },
+    {
+        "f":  "sure_78_naba.html",
+        "ar":  "النبأ",
+        "n":  78
+    },
+    {
+        "f":  "sure_79_naziat.html",
+        "ar":  "النازعات",
+        "n":  79
+    },
+    {
+        "f":  "sure_80_abasa.html",
+        "ar":  "عبس",
+        "n":  80
+    },
+    {
+        "f":  "sure_81_takwir.html",
+        "ar":  "التكوير",
+        "n":  81
+    },
+    {
+        "f":  "sure_82_infitar.html",
+        "ar":  "الانفطار",
+        "n":  82
+    },
+    {
+        "f":  "sure_83_mutaffifin.html",
+        "ar":  "المطففين",
+        "n":  83
+    },
+    {
+        "f":  "sure_84_inshiqaq.html",
+        "ar":  "الانشقاق",
+        "n":  84
+    },
+    {
+        "f":  "sure_85_buruj.html",
+        "ar":  "البروج",
+        "n":  85
+    },
+    {
+        "f":  "sure_86_tariq.html",
+        "ar":  "الطارق",
+        "n":  86
+    },
+    {
+        "f":  "sure_87_ala.html",
+        "ar":  "الأعلى",
+        "n":  87
+    },
+    {
+        "f":  "sure_88_ghashiya.html",
+        "ar":  "الغاشية",
+        "n":  88
+    },
+    {
+        "f":  "sure_89_fajr.html",
+        "ar":  "الفجر",
+        "n":  89
+    },
+    {
+        "f":  "sure_90_balad.html",
+        "ar":  "البلد",
+        "n":  90
+    },
+    {
+        "f":  "sure_91_shams.html",
+        "ar":  "الشمس",
+        "n":  91
+    },
+    {
+        "f":  "sure_92_layl.html",
+        "ar":  "الليل",
+        "n":  92
+    },
+    {
+        "f":  "sure_93_duha.html",
+        "ar":  "الضحى",
+        "n":  93
+    },
+    {
+        "f":  "sure_94_sharh.html",
+        "ar":  "الشرح",
+        "n":  94
+    },
+    {
+        "f":  "sure_95_tin.html",
+        "ar":  "التين",
+        "n":  95
+    },
+    {
+        "f":  "sure_96_alaq.html",
+        "ar":  "العلق",
+        "n":  96
+    },
+    {
+        "f":  "sure_98_bayyina.html",
+        "ar":  "البينة",
+        "n":  98
+    },
+    {
+        "f":  "sure_99_zalzala.html",
+        "ar":  "الزلزلة",
+        "n":  99
+    },
+    {
+        "f":  "sure_100_adiyat.html",
+        "ar":  "العاديات",
+        "n":  100
+    },
+    {
+        "f":  "sure_101_qaria.html",
+        "ar":  "القارعة",
+        "n":  101
+    },
+    {
+        "f":  "sure_102_takathur.html",
+        "ar":  "التكاثر",
+        "n":  102
+    },
+    {
+        "f":  "sure_104_humaza.html",
+        "ar":  "الهمزة",
+        "n":  104
+    },
+    {
+        "f":  "sure_105_fil.html",
+        "ar":  "الفيل",
+        "n":  105
+    },
+    {
+        "f":  "sure_106_quraysh.html",
+        "ar":  "قريش",
+        "n":  106
+    },
+    {
+        "f":  "sure_107_maun.html",
+        "ar":  "الماعون",
+        "n":  107
+    },
+    {
+        "f":  "sure_108_kawthar.html",
+        "ar":  "الكوثر",
+        "n":  108
+    },
+    {
+        "f":  "sure_110_nasr.html",
+        "ar":  "النصر",
+        "n":  110
+    },
+    {
+        "f":  "sure_111_masad.html",
+        "ar":  "المسد",
+        "n":  111
+    },
+    {
+        "f":  "sure_112_ikhlas.html",
+        "ar":  "الإخلاص",
+        "n":  112
+    },
+    {
+        "f":  "sure_113_falak.html",
+        "ar":  "الفلق",
+        "n":  113
+    },
+    {
+        "f":  "sure_114_nas.html",
+        "ar":  "الناس",
+        "n":  114
+    }
+]
