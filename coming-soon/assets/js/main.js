@@ -2,7 +2,7 @@ document.documentElement.classList.add("js");
 
 /* Site genel yapılandırması — tek güncelleme noktası */
 const SITE_CONFIG = {
-  whatsapp: "9665XXXXXXXX", // TODO: gerçek numara (ülke kodu + sayı, + ve boşluk olmadan)
+  whatsapp: "+905378142730", // TODO: gerçek numara (ülke kodu + sayı, + ve boşluk olmadan)
   whatsappText: "السلام عليكم، أريد التسجيل في برنامج جيل كالصحابة",
 };
 
