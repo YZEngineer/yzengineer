@@ -1,55 +1,382 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>قريباً...</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap');
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Noto Naskh Arabic', 'Amiri', serif;
-    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .box {
-    text-align: center;
-    padding: 60px 30px;
-  }
-  .box .icon { font-size: 4em; margin-bottom: 20px; }
-  .box h1 {
-    font-family: 'Amiri', serif;
-    font-size: 2.2em;
-    color: #f0c27f;
-    margin-bottom: 12px;
-  }
-  .box p { color: #b8b8d4; font-size: 1.1em; line-height: 1.8; }
-  .box a {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 12px 30px;
-    border: 2px solid rgba(255,255,255,0.15);
-    border-radius: 25px;
-    color: #b8b8d4;
-    text-decoration: none;
-    font-family: 'Noto Naskh Arabic', serif;
-    transition: all 0.3s;
-  }
-  .box a:hover {
-    border-color: #f0c27f;
-    color: #f0c27f;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>جيل كالصحابة | منصة بيان لتعليم القرآن والعلم الشرعي</title>
+  <meta name="description" content="برنامج جيل كالصحابة: رحلة تعليمية شرعية تربوية للناشئة من 6 إلى 17 سنة، 16 أسبوعًا من العقيدة والفقه والسيرة والتفسير والحديث والأخلاق.">
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/main.css?v=2">
 </head>
 <body>
-<div class="box">
-  <div class="icon">🚧</div>
-  <h1>قريباً...</h1>
-  <p>مشاريع جديدة قادمة إن شاء الله</p>
-  <a href="../main.html">العودة للرئيسية</a>
-</div>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="#top">
+        <img class="brand__logo" src="assets/img/logo.svg" alt="شعار منصة بيان">
+        <span>بيان<span class="brand__tag">جيل كالصحابة</span></span>
+      </a>
+      <a class="btn btn--whatsapp nav__cta" data-wa="أريد التسجيل لابني في برنامج جيل كالصحابة" href="#">احجز مكان ابنك</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <span class="hero__badge">ما لا يسع الطالب المسلم جهله</span>
+        <h1 class="hero__title">جيل كالصحابة</h1>
+        <p class="hero__slogan">منصة بيان لتعليم القرآن والعلم الشرعي</p>
+        <p class="hero__lead">
+          رحلة تربوية منظمة مدتها 16 أسبوعًا تبني في الطالب أساسًا متينًا في دينه:
+          عقيدة يفهمها، عبادات يعرف كيف يعيشها، سيرة يقتدى بها، وأخلاق يطبقها في حياته اليومية.
+        </p>
+        <div class="btn-group">
+          <a class="btn btn--whatsapp btn--lg" data-wa="أريد التسجيل لابني في برنامج جيل كالصحابة" href="#">احجز مكان ابنك</a>
+          <a class="btn btn--ghost btn--lg" href="#program" style="color:#fff;border-color:rgb(255 255 255 / 60%)">تعرّف على المحاور</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why">
+      <div class="container">
+        <h2 class="section__title reveal">لماذا «جيل كالصحابة»؟</h2>
+        <p class="section__subtitle reveal">
+          نقدّم لأبنائنا بيئة صالحة وآمنة يتعلمون فيها ما لا يسع الطالب المسلم جهله من أساسيات دينه.
+        </p>
+        <div class="carousel reveal" data-carousel aria-label="فوائد البرنامج">
+          <div class="carousel__track">
+            <div class="carousel__slide">
+              <div class="carousel-card">
+                <div class="carousel-card__icon">📖</div>
+                <h3 class="carousel-card__title">معرفة يفهمها</h3>
+                <p class="carousel-card__text">
+                  لا يكون البرنامج مجرد معلومات يحفظها الطالب، وإنما معرفة يفهمها ويستطيع أن يترجمها إلى سلوك.
+                </p>
+              </div>
+            </div>
+            <div class="carousel__slide">
+              <div class="carousel-card">
+                <div class="carousel-card__icon">🤝</div>
+                <h3 class="carousel-card__title">سلوك يطبقه</h3>
+                <p class="carousel-card__text">
+                  نحوّل المعلومة إلى عادة وسلوك في الصلاة والطهارة والمعاملات، ويتعلم كيف يتعامل مع القرآن والسنة في حياته اليومية.
+                </p>
+              </div>
+            </div>
+            <div class="carousel__slide">
+              <div class="carousel-card">
+                <div class="carousel-card__icon">🎯</div>
+                <h3 class="carousel-card__title">بيئة آمنة وتفاعلية</h3>
+                <p class="carousel-card__text">
+                  يبقى الطالب مشاركًا في عملية التعلم: قصة، سؤال، شرح، حوار، نشاط، لعبة، وموقف تطبيقي، ثم مراجعة.
+                </p>
+              </div>
+            </div>
+            <div class="carousel__slide">
+              <div class="carousel-card">
+                <div class="carousel-card__icon">🗓️</div>
+                <h3 class="carousel-card__title">منهج واضح ومحدد</h3>
+                <p class="carousel-card__text">
+                  16 أسبوعًا، لقاء واحد أسبوعيًا يوم الجمعة، مدة اللقاء 90–120 دقيقة، بناءً على خطة محاور مرتبة.
+                </p>
+              </div>
+            </div>
+            <div class="carousel__slide">
+              <div class="carousel-card">
+                <div class="carousel-card__icon">👥</div>
+                <h3 class="carousel-card__title">مجموعات صغيرة ومتابعة</h3>
+                <p class="carousel-card__text">
+                  من 10 إلى 15 طالبًا في المجموعة لتحقيق التوازن بين التفاعل والمتابعة وجودة التجربة التعليمية.
+                </p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel__control carousel__control--prev" type="button" aria-label="السابق"></button>
+          <button class="carousel__control carousel__control--next" type="button" aria-label="التالي"></button>
+          <div class="carousel__dots"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <h2 class="section__title reveal">البرنامج في أرقام</h2>
+        <div class="stat-strip">
+          <div class="stat reveal"><span class="stat__num">16</span><span class="stat__label">أسبوعًا</span></div>
+          <div class="stat reveal"><span class="stat__num">8</span><span class="stat__label">محاور رئيسية</span></div>
+          <div class="stat reveal"><span class="stat__num">6–17</span><span class="stat__label">سنة (الفئتان)</span></div>
+          <div class="stat reveal"><span class="stat__num">10–15</span><span class="stat__label">طالبًا في المجموعة</span></div>
+          <div class="stat reveal"><span class="stat__num">90–120</span><span class="stat__label">دقيقة للقاء</span></div>
+          <div class="stat reveal"><span class="stat__num">الجمعة</span><span class="stat__label">لقاء أسبوعي</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="program">
+      <div class="container">
+        <h2 class="section__title reveal">ماذا سيتعلم طالبك؟</h2>
+        <p class="section__subtitle reveal">
+          ثمانية محاور تُبنى بلقاءين لكل محور، تُختتم بمراجعة تفاعلية ومسابقة ختامية.
+        </p>
+        <div class="carousel reveal" data-carousel aria-label="محاور البرنامج">
+          <div class="carousel__track">
+            <div class="carousel__slide">
+              <div class="carousel-card">
+                <div class="carousel-card__icon">🕋</div>
+                <span class="carousel-card__badge">لقاءان</span>
+                <h3 class="carousel-card__title">الإيمان والعقيدة</h3>
+                <p class="carousel-card__text">يفهم الطالب لماذا خُلق، وما أركان دينه، ويسلم من الشرك والبدعة.</p>
+                <ul class="carousel-card__list">
+                  <li>لماذا خلقنا الله؟</li>
+                  <li>لماذا خلق الله الكون؟</li>
+                  <li>ما الإسلام؟</li>
+                  <li>هل يقبل الله دينًا غير الإسلام؟</li>
+                  <li>أركان الإسلام.</li>
+                  <li>أركان الإيمان.</li>
+                  <li>أركان الإحسان.</li>
+                  <li>النفاق.</li>
+                  <li>الشرك.</li>
+                  <li>الكفر.</li>
+                  <li>البدعة.</li>
+                  <li>الكبائر والصغائر.</li>
+                  <li>عقيدة المسلم تجاه الأنبياء والرسل.</li>
+                  <li>مكانة الصحابة وآل البيت.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="carousel__slide">
+              <div class="carousel-card">
+                <div class="carousel-card__icon">🧼</div>
+                <span class="carousel-card__badge">لقاءان</span>
+                <h3 class="carousel-card__title">الفقه والعبادات</h3>
+                <p class="carousel-card__text">يتعلم كيف يعبد الله على علم لا أن يحفظ أحكامًا منفصلة عن واقعه.</p>
+                <ul class="carousel-card__list">
+                  <li>الطهارة.</li>
+                  <li>الوضوء.</li>
+                  <li>الغسل.</li>
+                  <li>الاستنجاء.</li>
+                  <li>النجاسات.</li>
+                  <li>التيمم.</li>
+                  <li>المسح على الجورب والخف.</li>
+                  <li>الصلاة.</li>
+                  <li>الصيام.</li>
+                  <li>أحكام مختارة من البيع والشراء.</li>
+                  <li>مفهوم الجهاد وضوابطه الشرعية بما يناسب المرحلة العمرية.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="carousel__slide">
+              <div class="carousel-card">
+                <div class="carousel-card__icon">🌙</div>
+                <span class="carousel-card__badge">لقاءان</span>
+                <h3 class="carousel-card__title">السيرة والتاريخ</h3>
+                <p class="carousel-card__text">يتعلم من القصة والمواقف: ماذا حدث؟ لماذا؟ وماذا نتعلم؟ وكيف نطبق؟</p>
+                <ul class="carousel-card__list">
+                  <li>قصة آدم عليه السلام.</li>
+                  <li>العهد المكي.</li>
+                  <li>نماذج من حياة الصحابة.</li>
+                  <li>أبو هريرة رضي الله عنه للصغار.</li>
+                  <li>مصعب بن عمير رضي الله عنه للكبار.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="carousel__slide">
+              <div class="carousel-card">
+                <div class="carousel-card__icon">📗</div>
+                <span class="carousel-card__badge">لقاءان</span>
+                <h3 class="carousel-card__title">التفسير</h3>
+                <p class="carousel-card__text">سور قصيرة يحتاجها في حياته وصلاته، تُقدَّم بصورة مناسبة للعمر.</p>
+                <ul class="carousel-card__list">
+                  <li>سورة الفاتحة.</li>
+                  <li>سورة الإخلاص.</li>
+                  <li>سورة الفلق.</li>
+                  <li>سورة الناس.</li>
+                  <li>سورة الكافرون.</li>
+                  <li>سورة الماعون.</li>
+                  <li>سورة الهمزة.</li>
+                  <li>سورة التكاثر.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="carousel__slide">
+              <div class="carousel-card">
+                <div class="carousel-card__icon">💬</div>
+                <span class="carousel-card__badge">لقاءان</span>
+                <h3 class="carousel-card__title">الأحاديث النبوية</h3>
+                <p class="carousel-card__text">أحاديث منتقاة تُنقل به الطالب من الحفظ إلى الفهم والتطبيق.</p>
+                <ul class="carousel-card__list">
+                  <li>«إنما الأعمال بالنيات».</li>
+                  <li>حديث جبريل: «بينما نحن جلوس عند رسول الله ﷺ...».</li>
+                  <li>«لا يؤمن أحدكم حتى يحب لأخيه...».</li>
+                  <li>«من حسن إسلام المرء تركه ما لا يعنيه».</li>
+                  <li>«الحلال بيّن والحرام بيّن».</li>
+                  <li>«من أحدث في أمرنا هذا ما ليس منه فهو رد».</li>
+                </ul>
+              </div>
+            </div>
+            <div class="carousel__slide">
+              <div class="carousel-card">
+                <div class="carousel-card__icon">💚</div>
+                <span class="carousel-card__badge">لقاءان</span>
+                <h3 class="carousel-card__title">الأخلاق والتزكية</h3>
+                <p class="carousel-card__text">أدب مع الله ورسوله والوالدين والمعلم، وضبط النفس عند الغضب والإساءة.</p>
+                <ul class="carousel-card__list">
+                  <li class="carousel-card__list-group">يتعلم الطالب الأدب مع:</li>
+                  <li>الله سبحانه وتعالى.</li>
+                  <li>رسول الله ﷺ.</li>
+                  <li>الأنبياء.</li>
+                  <li>الصحابة.</li>
+                  <li>العلماء والمشايخ والصالحين.</li>
+                  <li>الوالدين.</li>
+                  <li>المعلم.</li>
+                  <li>الإخوة والأقارب.</li>
+                  <li>الأصدقاء.</li>
+                  <li>الجيران.</li>
+                  <li>الضيف.</li>
+                  <li>الكبير والصغير.</li>
+                  <li class="carousel-card__list-group">كما يتناول البرنامج:</li>
+                  <li>الحسد.</li>
+                  <li>الغل.</li>
+                  <li>الكبر.</li>
+                  <li>التنمر.</li>
+                  <li>السخرية والاستهزاء.</li>
+                  <li>السب والشتم.</li>
+                  <li>الضرب والأذى.</li>
+                  <li>الذوقيات وحسن التعامل.</li>
+                  <li>كيفية التعامل مع من أساء إلينا.</li>
+                  <li>كيفية أخذ الحق بطريقة ترضي الله.</li>
+                </ul>
+                <p class="carousel-card__text">وللكبار يتم تناول ما يناسب مرحلتهم من ضوابط التعامل مع غير المحارم، وغض البصر، وعدم الاختلاط بصورة تربوية مناسبة لأعمارهم.</p>
+              </div>
+            </div>
+            <div class="carousel__slide">
+              <div class="carousel-card">
+                <div class="carousel-card__icon">📿</div>
+                <span class="carousel-card__badge">لقاءان</span>
+                <h3 class="carousel-card__title">الآداب والأذكار</h3>
+                <p class="carousel-card__text">آدابًا عملية يحتاجها المسلم كل يوم في بيته وطريقه ومسجده.</p>
+                <ul class="carousel-card__list">
+                  <li>أذكار النوم والاستيقاظ.</li>
+                  <li>دخول الخلاء والخروج منه.</li>
+                  <li>آداب الطعام والشراب.</li>
+                  <li>آداب اللباس.</li>
+                  <li>دخول المنزل والخروج منه.</li>
+                  <li>آداب الطريق.</li>
+                  <li>غض البصر.</li>
+                  <li>السلام.</li>
+                  <li>الركوب.</li>
+                  <li>دخول المسجد والخروج منه.</li>
+                  <li>بعض أذكار الصباح والمساء.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="carousel__slide">
+              <div class="carousel-card">
+                <div class="carousel-card__icon">🏆</div>
+                <span class="carousel-card__badge">لقاءان</span>
+                <h3 class="carousel-card__title">المراجعة والمسابقة الختامية</h3>
+                <p class="carousel-card__text">مراجعة تفاعلية تُختتم بمسابقة تجمع المعرفة والسرعة والفهم والعمل الجماعي.</p>
+                <ul class="carousel-card__list">
+                  <li>أسئلة.</li>
+                  <li>مواقف.</li>
+                  <li>ألعاب.</li>
+                  <li>تحديات جماعية.</li>
+                  <li>تطبيقات عملية.</li>
+                  <li>مراجعة الفروق بين المفاهيم.</li>
+                  <li>قياس مدى استيعاب الطالب.</li>
+                  <li>المسابقة الختامية: المعرفة + السرعة + الفهم + العمل الجماعي + التطبيق.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <button class="carousel__control carousel__control--prev" type="button" aria-label="السابق"></button>
+          <button class="carousel__control carousel__control--next" type="button" aria-label="التالي"></button>
+          <div class="carousel__dots"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="parents">
+      <div class="container">
+        <h2 class="section__title reveal">رحلة الطالب ورسالتنا إلى ولي الأمر</h2>
+        <div class="grid grid--2">
+          <div class="reveal">
+            <div class="callout callout--quote">
+              «لا نريد أن يكون ابنك أكثر حفظًا للمعلومات فقط، بل أن يعرف:
+              من أنا؟ ولماذا أنا مسلم؟ وماذا أعبد؟ وكيف أعبد الله؟
+              وكيف أجعل ما تعلمه من ديني حاضرًا في حياتي.»
+            </div>
+            <div class="step-chips">
+              <span class="step-chip">التسجيل</span>
+              <span class="step-chip">المجموعة المناسبة</span>
+              <span class="step-chip">16 أسبوعًا من التعلم</span>
+              <span class="step-chip">مراجعة ومسابقة ختامية</span>
+              <span class="step-chip">المراحل التالية</span>
+            </div>
+          </div>
+          <div class="reveal">
+            <ul class="feature-list">
+              <li>منهج واضح ومحدد لمدة 16 أسبوعًا</li>
+              <li>مجموعات صغيرة (10–15 طالبًا)</li>
+              <li>معلم متخصص وأنشطة تفاعلية</li>
+              <li>مسابقات وتحديات ومراجعة ختامية</li>
+              <li>متابعة تعليمية وتجربة مناسبة للعمر</li>
+              <li>ربط العلم بالسلوك والحياة اليومية</li>
+            </ul>
+            <div class="btn-group" style="justify-content:flex-start;margin-top:var(--space-md)">
+              <a class="btn btn--whatsapp" data-wa="أريد التسجيل لابني في برنامج جيل كالصحابة" href="#">احجز مكان ابنك الآن</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="container">
+        <h2>جيل يعرف دينه، يفهمه، ويعيش أثره في حياته</h2>
+        <p>التسجيل والشراكة والتواصل عبر واتساب — نرد عليكم في أقرب وقت.</p>
+        <div class="btn-group">
+          <a class="btn btn--whatsapp btn--lg" data-wa="السلام عليكم، أريد التسجيل في برنامج جيل كالصحابة" href="#">احجز مكان ابنك</a>
+          <a class="btn btn--lg" href="#program" style="background:rgb(255 255 255 / 14%);color:#fff">تعرّف على المحاور</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <h3>جيل كالصحابة</h3>
+          <p>ما لا يسع الطالب المسلم جهله — منصة بيان لتعليم القرآن والعلم الشرعي.</p>
+        </div>
+        <div>
+          <h3>أقسام الصفحة</h3>
+          <ul class="footer__links">
+            <li><a href="#why">لماذا البرنامج</a></li>
+            <li><a href="#program">المحاور الثمانية</a></li>
+            <li><a href="#parents">لولي الأمر</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>للتواصل والتسجيل</h3>
+          <ul class="footer__links">
+            <li><a data-wa="السلام عليكم" href="#">واتساب</a></li>
+            <li><a href="mailto:info@example.com">البريد الإلكتروني</a></li>
+            <li><a href="#top">العودة إلى الأعلى</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        © <span id="year"></span> منصة بيان — جيل كالصحابة. جميع الحقوق محفوظة.
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-top" aria-label="العودة للأعلى">↑</button>
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>
